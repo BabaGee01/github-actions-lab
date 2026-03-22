@@ -20,9 +20,8 @@ variable "bucket_suffix" {
 
 # S3 Bucket - using fixed name to prevent duplicates
 resource "aws_s3_bucket" "demo" {
-  #bucket = "cloudburst-demo-${var.bucket_suffix}"
-  bucket = "cloudburst-demo-dev-${random_id.suffix.hex}"
-
+  bucket = "cloudburst-demo-${var.bucket_suffix}"
+  
   tags = {
     Name        = "CloudBurst Demo Bucket"
     Environment = "dev"
