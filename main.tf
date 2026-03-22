@@ -15,12 +15,13 @@ provider "aws" {
 variable "bucket_suffix" {
   description = "Unique suffix for bucket name (use your initials)"
   type        = string
-  default     = "SBO"  # CHANGE THIS to your initials!
+  default     = "sbo"  # CHANGE THIS to your initials!
 }
 
 # S3 Bucket - using fixed name to prevent duplicates
 resource "aws_s3_bucket" "demo" {
-  bucket = "cloudburst-demo-${var.bucket_suffix}"
+  #bucket = "cloudburst-demo-${var.bucket_suffix}"
+  bucket = "cloudburst-demo-dev-${random_id.suffix.hex}"
 
   tags = {
     Name        = "CloudBurst Demo Bucket"
