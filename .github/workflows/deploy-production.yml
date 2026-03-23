@@ -59,29 +59,11 @@ jobs:
         with:
           terraform_version: 1.6.0
 
-      - name: Restore Terraform State
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            terraform.tfstate
-            terraform.tfstate.backup
-            .terraform
-          key: terraform-state-production-${{ github.repository }}
-
       - name: Terraform Init
         run: terraform init
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -var="environment=production"
-
-      - name: Save Terraform State
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            terraform.tfstate
-            terraform.tfstate.backup
-            .terraform
-          key: terraform-state-production-${{ github.repository }}
 
       - name: Deployment Summary
         run: |
